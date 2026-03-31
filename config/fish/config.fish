@@ -11,6 +11,8 @@ alias pybase="source ~/python_base/.venv/bin/activate.fish"
 
 alias claude_apm="claude --append-system-prompt (cat ~/.claude/auto_plan_mode.txt)"
 
+alias typora="open -a typora"
+
 # Starship prompt
 set -gx STARSHIP_CONFIG "$HOME/.config/starship/mytheme.toml"
 starship init fish | source

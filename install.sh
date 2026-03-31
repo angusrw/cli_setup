@@ -30,6 +30,10 @@ ln -sf "$DOTFILES/wezterm/grain.jpg" ~/grain.jpg
 # Git
 ln -sf "$DOTFILES/git/.gitconfig" ~/.gitconfig
 
+# uv
+mkdir -p ~/.config/uv
+ln -sf "$DOTFILES/uv/uv.toml" ~/.config/uv/uv.toml
+
 # Claude Code
 ln -sf "$DOTFILES/claude/auto_plan_mode.txt" ~/.claude/auto_plan_mode.txt
 for agent in "$DOTFILES/claude/agents/"*.md; do
