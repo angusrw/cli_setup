@@ -1,12 +1,11 @@
 #!/bin/bash
-DOTFILES="$(cd "$(dirname "$0")" && pwd)/config"
+set -e
 
-mkdir -p ~/.config/fish
-mkdir -p ~/.config/starship
-mkdir -p ~/.config/helix
-mkdir -p ~/.config/zellij/layouts
-mkdir -p ~/.config/zellij/plugins
-mkdir -p ~/.claude/agents
+DOTFILES="$(cd "$(dirname "$0")/.." && pwd)/config"
+FORCE=false
+[ "$1" = "--force" ] && FORCE=true
+
+mkdir -p ~/.config/{fish,starship,helix,zellij/layouts,zellij/plugins,uv} ~/.claude/{agents,skills}
 
 # Fish
 ln -sf "$DOTFILES/fish/config.fish" ~/.config/fish/config.fish
@@ -31,13 +30,29 @@ ln -sf "$DOTFILES/wezterm/grain.jpg" ~/grain.jpg
 ln -sf "$DOTFILES/git/.gitconfig" ~/.gitconfig
 
 # uv
-mkdir -p ~/.config/uv
 ln -sf "$DOTFILES/uv/uv.toml" ~/.config/uv/uv.toml
 
 # Claude Code
+ln -sf "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -sf "$DOTFILES/claude/auto_plan_mode.txt" ~/.claude/auto_plan_mode.txt
 for agent in "$DOTFILES/claude/agents/"*.md; do
     ln -sf "$agent" ~/.claude/agents/
+done
+
+# Claude Code settings.json (not symlinked — written with resolved paths)
+ZELLAUDE_HOOK="$HOME/.config/zellij/plugins/zellaude-hook.sh"
+if [ ! -f ~/.claude/settings.json ] || [ "$FORCE" = true ]; then
+    sed "s|__ZELLAUDE_HOOK_PATH__|$ZELLAUDE_HOOK|g" "$DOTFILES/claude/settings.json" > ~/.claude/settings.json
+    echo "✅ settings.json written"
+else
+    echo "⚠️  ~/.claude/settings.json already exists, use --force to overwrite"
+fi
+
+# Claude Code skills
+for skill in "$DOTFILES/claude/skills"/*/; do
+    [ -d "$skill" ] || continue
+    name="$(basename "$skill")"
+    ln -sfn "$skill" ~/.claude/skills/"$name"
 done
 
 echo "✅ Dotfiles linked"

@@ -1,5 +1,5 @@
 ---
-name: documentation-writer (DW1)
+name: documentation-writer
 description: Use this agent when you need to create or update technical documentation for codebases, components, APIs, or software systems. Examples include: writing README files, API documentation, architecture overviews, component guides, usage instructions, or integration documentation. Also use when you need to explain how different parts of a system work together or provide clear instructions for developers on how to use specific components or features.
 color: cyan
 ---

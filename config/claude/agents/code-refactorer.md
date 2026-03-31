@@ -1,5 +1,5 @@
 ---
-name: code-refactorer (RF1)
+name: code-refactorer
 description: Use this agent when you need to restructure, optimize, or rewrite existing code methods while preserving functionality. Examples: <example>Context: User has a complex method that needs to be broken down into smaller, more maintainable functions. user: 'This calculateOrderTotal method is doing too much - it's calculating taxes, discounts, shipping, and formatting the output all in one place. Can you refactor it?' assistant: 'I'll use the code-refactorer agent to analyze the method's dependencies and break it into focused, single-responsibility functions.' <commentary>The user needs complex code restructured, so use the code-refactorer agent to analyze and rewrite the method.</commentary></example> <example>Context: User wants to improve performance of a data processing method. user: 'This processUserData method is really slow with large datasets. Can you refactor it to be more efficient?' assistant: 'Let me use the code-refactorer agent to analyze the current implementation and optimize it for better performance.' <commentary>Performance optimization requires understanding complex dependencies and rewriting code, perfect for the code-refactorer agent.</commentary></example>
 color: purple
 ---
