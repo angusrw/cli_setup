@@ -90,9 +90,9 @@ Supply chain security that intercepts package manager installs and checks for kn
 
 ### Dependencies
 
-`setup.sh` installs all of these via Homebrew:
+`setup.sh` runs `brew bundle` against the repo's `Brewfile`:
 
-Fish, Starship, Helix, Zellij, WezTerm, FiraCode Nerd Font (required by WezTerm + Starship), uv, jq (used by zellaude-hook.sh), Aikido SafeChain (curl install).
+Fish, Starship, Helix, Zellij, WezTerm, FiraCode Nerd Font (required by WezTerm + Starship), uv, jq (used by zellaude-hook.sh), Aikido SafeChain (curl install, skipped if already present).
 
 ## Repo Structure
 
@@ -126,6 +126,7 @@ cli_setup/
 ├── scripts/
 │   ├── install.sh
 │   └── setup.sh
+├── Brewfile
 └── README.md
 ```
 
@@ -154,4 +155,7 @@ chmod +x scripts/install.sh
 
 ```bash
 ./scripts/install.sh
+
+# Check if everything is in sync:
+./scripts/install.sh --check
 ```

@@ -3,7 +3,70 @@ set -e
 
 DOTFILES="$(cd "$(dirname "$0")/.." && pwd)/config"
 FORCE=false
-[ "$1" = "--force" ] && FORCE=true
+CHECK=false
+for arg in "$@"; do
+    case "$arg" in
+        --force) FORCE=true ;;
+        --check) CHECK=true ;;
+    esac
+done
+
+# --- check mode ---
+
+check_link() {
+    local target="$1" link="$2"
+    if [ -L "$link" ] && [ "$(readlink "$link")" = "$target" ]; then
+        echo "  ✅ $link"
+    elif [ -L "$link" ]; then
+        echo "  ⚠️  $link -> $(readlink "$link") (expected $target)"
+    elif [ -e "$link" ]; then
+        echo "  ⚠️  $link exists but is not a symlink"
+    else
+        echo "  ❌ $link missing"
+    fi
+}
+
+check_file() {
+    local path="$1"
+    if [ -f "$path" ]; then
+        echo "  ✅ $path"
+    else
+        echo "  ❌ $path missing"
+    fi
+}
+
+if [ "$CHECK" = true ]; then
+    echo "Symlinks:"
+    check_link "$DOTFILES/fish/config.fish" ~/.config/fish/config.fish
+    check_link "$DOTFILES/starship/mytheme.toml" ~/.config/starship/mytheme.toml
+    check_link "$DOTFILES/helix/config.toml" ~/.config/helix/config.toml
+    check_link "$DOTFILES/zellij/config.kdl" ~/.config/zellij/config.kdl
+    check_link "$DOTFILES/zellij/layouts/default.kdl" ~/.config/zellij/layouts/default.kdl
+    check_link "$DOTFILES/zellij/plugins/zellaude.wasm" ~/.config/zellij/plugins/zellaude.wasm
+    check_link "$DOTFILES/zellij/plugins/zellaude-hook.sh" ~/.config/zellij/plugins/zellaude-hook.sh
+    check_link "$DOTFILES/wezterm/.wezterm.lua" ~/.wezterm.lua
+    check_link "$DOTFILES/wezterm/grain.jpg" ~/grain.jpg
+    check_link "$DOTFILES/git/.gitconfig" ~/.gitconfig
+    check_link "$DOTFILES/uv/uv.toml" ~/.config/uv/uv.toml
+    check_link "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+    check_link "$DOTFILES/claude/auto_plan_mode.txt" ~/.claude/auto_plan_mode.txt
+    for agent in "$DOTFILES/claude/agents/"*.md; do
+        check_link "$agent" ~/.claude/agents/"$(basename "$agent")"
+    done
+    for skill in "$DOTFILES/claude/skills"/*/; do
+        [ -d "$skill" ] || continue
+        name="$(basename "$skill")"
+        check_link "$skill" ~/.claude/skills/"$name"
+    done
+
+    echo ""
+    echo "Files:"
+    check_file ~/.claude/settings.json
+
+    exit 0
+fi
+
+# --- install mode ---
 
 mkdir -p ~/.config/{fish,starship,helix,zellij/layouts,zellij/plugins,uv} ~/.claude/{agents,skills}
 

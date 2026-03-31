@@ -6,16 +6,14 @@ if ! command -v brew &> /dev/null; then
     exit 1
 fi
 
-brew install fish
-brew install starship
-brew install helix
-brew install zellij
-brew install --cask wezterm
-brew install --cask font-fira-code-nerd-font
-brew install uv
-brew install jq
+REPO="$(cd "$(dirname "$0")/.." && pwd)"
+brew bundle --file="$REPO/Brewfile"
 
 # Aikido SafeChain — supply chain security for package managers
-curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh
+if [ ! -d ~/.safe-chain ]; then
+    curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh
+else
+    echo "SafeChain already installed"
+fi
 
-echo "Done"
+echo "✅ Dependencies installed"
