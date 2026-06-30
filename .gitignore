@@ -8,3 +8,6 @@ secrets/
 
 # OS
 .DS_Store
+
+# Misc
+__pycache__/
