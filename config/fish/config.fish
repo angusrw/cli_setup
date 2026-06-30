@@ -11,6 +11,10 @@ alias pybase="source ~/python_base/.venv/bin/activate.fish"
 
 alias claude_apm="claude --append-system-prompt (cat ~/.claude/auto_plan_mode.txt)"
 
+function claude_git
+    claude -p "/git-recap $argv" --model sonnet --allowedTools "Bash(git:*)"
+end
+
 alias typora="open -a typora"
 
 # Starship prompt
