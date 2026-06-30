@@ -12,7 +12,7 @@ FiraCode Nerd Font, Panda color scheme, dark purple gradient background with gra
 
 ### Fish (shell)
 
-`config/fish/config.fish` symlinked to `~/.config/fish/config.fish`
+`config/fish/config.fish` symlinked to `~/.config/fish/config.fish`. Any `.fish` files under `config/fish/functions/` are symlinked into `~/.config/fish/functions/` (fish autoloads them by filename).
 
 - PATH setup (`/opt/homebrew/bin`, `~/.local/bin`)
 - Aliases: `uvenv`, `pybase`, `claude_apm`, `typora`

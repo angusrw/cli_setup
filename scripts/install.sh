@@ -38,6 +38,10 @@ check_file() {
 if [ "$CHECK" = true ]; then
     echo "Symlinks:"
     check_link "$DOTFILES/fish/config.fish" ~/.config/fish/config.fish
+    for fn in "$DOTFILES/fish/functions/"*.fish; do
+        [ -f "$fn" ] || continue
+        check_link "$fn" ~/.config/fish/functions/"$(basename "$fn")"
+    done
     check_link "$DOTFILES/starship/mytheme.toml" ~/.config/starship/mytheme.toml
     check_link "$DOTFILES/helix/config.toml" ~/.config/helix/config.toml
     check_link "$DOTFILES/zellij/config.kdl" ~/.config/zellij/config.kdl
@@ -68,10 +72,14 @@ fi
 
 # --- install mode ---
 
-mkdir -p ~/.config/{fish,starship,helix,zellij/layouts,zellij/plugins,uv} ~/.claude/{agents,skills}
+mkdir -p ~/.config/{fish,fish/functions,starship,helix,zellij/layouts,zellij/plugins,uv} ~/.claude/{agents,skills}
 
 # Fish
 ln -sf "$DOTFILES/fish/config.fish" ~/.config/fish/config.fish
+for fn in "$DOTFILES/fish/functions/"*.fish; do
+    [ -f "$fn" ] || continue
+    ln -sf "$fn" ~/.config/fish/functions/
+done
 
 # Starship
 ln -sf "$DOTFILES/starship/mytheme.toml" ~/.config/starship/mytheme.toml
