@@ -25,8 +25,8 @@ config.color_scheme = 'Panda (Gogh)'
 
 config.window_padding = { left = 0, right = 0, top = 8, bottom = 0 }
 config.hide_tab_bar_if_only_one_tab = true
-config.window_background_opacity = 0.90  -- 0.0 to 1.0
-config.macos_window_background_blur = 10
+-- config.window_background_opacity = 0.90  -- 0.0 to 1.0
+-- config.macos_window_background_blur = 10
 
 config.background = {
     {
@@ -38,14 +38,14 @@ config.background = {
         },
         width = "100%",
         height = "100%",
-        opacity = 0.9,
+--        opacity = 0.9,
     },
-    {
-        source = { File = os.getenv("HOME") .. "/grain.jpg" },
-        repeat_x = "Mirror",
-        repeat_y = "Mirror",
-        opacity = 0.02,
-    },
+--    {
+--        source = { File = os.getenv("HOME") .. "/grain.jpg" },
+--        repeat_x = "Mirror",
+--        repeat_y = "Mirror",
+--        opacity = 0.02,
+--    },
 }
 
 --config.window_background_gradient = {
