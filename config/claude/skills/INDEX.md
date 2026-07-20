@@ -1,6 +1,6 @@
 # Skill Index
 
-42 skills managed in this repo. Symlinked to `~/.claude/skills/` by `scripts/install.sh`.
+51 skills managed in this repo. Symlinked to `~/.claude/skills/` by `scripts/install.sh`.
 
 To add a new skill: `npx skills add <source>`, then copy the skill directory into `config/claude/skills/`.
 
@@ -57,6 +57,20 @@ To add a new skill: `npx skills add <source>`, then copy the skill directory int
 | Skill | Description |
 |---|---|
 | humanizer | Remove signs of AI-generated writing to sound more natural |
+
+## Community — [skills.isambard.ac.uk](https://skills.isambard.ac.uk)
+
+| Skill | Description |
+|---|---|
+| brics-hpc-ai-code | Responsible AI-generated code on BriCS HPC — policies, storage, job scripts |
+| containers | Podman-HPC and Apptainer containers on Isambard, incl. GPU and multi-node |
+| cuda | CUDA on Isambard-AI GH200 GPUs — toolkit modules, nvcc, sm_90 |
+| modules | Modules system, Cray programming environments, compilers on Isambard |
+| mpi | Multi-node MPI jobs on Isambard — Cray MPICH, PMI/PMIx, mpi4py |
+| nccl | NCCL multi-node GPU communication on Isambard-AI — aws-ofi-nccl, Slingshot |
+| python | Python environments on Isambard — Conda/Miniforge, uv, aarch64 builds |
+| slurm | Slurm jobs on Isambard-AI and Isambard 3 — sbatch, arrays, QOS |
+| spack | Building software with Spack on Isambard — buildit config, neoverse_v2 |
 
 ## Community — [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills)
 
