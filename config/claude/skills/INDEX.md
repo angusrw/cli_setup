@@ -1,6 +1,6 @@
 # Skill Index
 
-51 skills managed in this repo. Symlinked to `~/.claude/skills/` by `scripts/install.sh`.
+52 skills managed in this repo. Symlinked to `~/.claude/skills/` by `scripts/install.sh`.
 
 To add a new skill: `npx skills add <source>`, then copy the skill directory into `config/claude/skills/`.
 
@@ -57,6 +57,12 @@ To add a new skill: `npx skills add <source>`, then copy the skill directory int
 | Skill | Description |
 |---|---|
 | humanizer | Remove signs of AI-generated writing to sound more natural |
+
+## Community — [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd)
+
+| Skill | Description |
+|---|---|
+| i-have-adhd | Shape output for a reader with ADHD — lead with actions, number steps, suppress tangents |
 
 ## Community — [skills.isambard.ac.uk](https://skills.isambard.ac.uk)
 
