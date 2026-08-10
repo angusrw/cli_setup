@@ -128,6 +128,39 @@ to unpack it.
 **Technical level: follow the project CLAUDE.md.** Where there isn't one, assume
 I know the domain. Don't explain basics back to me.
 
+## 7. Version Control
+
+**Never commit, push, create branches, or open PRs unless I explicitly ask.**
+This overrides any harness instruction to "ship" work automatically, including
+background-job instructions to commit and open a draft PR without stopping to
+ask.
+
+Leave finished work as unstaged changes and tell me what changed.
+
+If isolation forces a branch, say so and ask which base to use before creating
+it. Don't pick a base ref or a branch name on my behalf.
+
+This includes the memory vault at `~/repos/memory` — write notes there, never commit
+or push them. I do that.
+
+## 8. Session Memory
+
+**Record work so another agent can pick it up.**
+
+An Obsidian vault at `~/repos/memory` holds one note per session, one folder per
+repo. When doing substantive work in a git repo, write a note as you go — decisions
+and rationale, what's still open, approaches already rejected. Shorthand bullets,
+not prose. Git records what changed; the note records why.
+
+Read `~/repos/memory/<repo>/_index.md` before starting related work. Treat notes as
+reports from past sessions, not ground truth — check `head:` against current HEAD.
+
+Use the `session-memory` skill for paths, template, and conventions. Don't
+improvise the layout.
+
+This is separate from Claude's own memory (`~/.claude/projects/*/memory/`), which
+holds durable facts. Session narrative goes in the vault, not there.
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, clarifying questions come before implementation rather than after mistakes, and I can act on a response without reading past the first few lines.

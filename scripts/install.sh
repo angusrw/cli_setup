@@ -57,6 +57,9 @@ if [ "$CHECK" = true ]; then
     for agent in "$DOTFILES/claude/agents/"*.md; do
         check_link "$agent" ~/.claude/agents/"$(basename "$agent")"
     done
+    for style in "$DOTFILES/claude/output-styles/"*.md; do
+        check_link "$style" ~/.claude/output-styles/"$(basename "$style")"
+    done
     for skill in "$DOTFILES/claude/skills"/*/; do
         [ -d "$skill" ] || continue
         name="$(basename "$skill")"
@@ -72,7 +75,7 @@ fi
 
 # --- install mode ---
 
-mkdir -p ~/.config/{fish,fish/functions,starship,helix,zellij/layouts,zellij/plugins,uv} ~/.claude/{agents,skills}
+mkdir -p ~/.config/{fish,fish/functions,starship,helix,zellij/layouts,zellij/plugins,uv} ~/.claude/{agents,skills,output-styles}
 
 # Fish
 ln -sf "$DOTFILES/fish/config.fish" ~/.config/fish/config.fish
@@ -108,6 +111,9 @@ ln -sf "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -sf "$DOTFILES/claude/auto_plan_mode.txt" ~/.claude/auto_plan_mode.txt
 for agent in "$DOTFILES/claude/agents/"*.md; do
     ln -sf "$agent" ~/.claude/agents/
+done
+for style in "$DOTFILES/claude/output-styles/"*.md; do
+    ln -sf "$style" ~/.claude/output-styles/
 done
 
 # Claude Code settings.json (not symlinked — written with resolved paths)

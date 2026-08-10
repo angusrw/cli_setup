@@ -1,6 +1,6 @@
 # Skill Index
 
-53 skills managed in this repo. Symlinked to `~/.claude/skills/` by `scripts/install.sh`.
+61 skills managed in this repo. Symlinked to `~/.claude/skills/` by `scripts/install.sh`.
 
 To add a new skill: `npx skills add <source>`, then copy the skill directory into `config/claude/skills/`.
 
@@ -10,6 +10,8 @@ To add a new skill: `npx skills add <source>`, then copy the skill directory int
 |---|---|
 | codebase-viz | Interactive collapsible tree visualization of a codebase |
 | policy-mapping | Break down policy documents, regulations, and standards into structured criteria |
+| session-memory | Record session decisions and open work to the `~/repos/memory` vault, so another agent can pick it up |
+| short-recap | Session recap — current project status and agreed/discussed changes, two short bullet lists |
 | ste | Rewrite or check technical docs against ASD-STE100 Simplified Technical English |
 
 ## Community — [pbakaus/impeccable](https://impeccable.style/#downloads)

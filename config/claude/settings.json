@@ -1,5 +1,6 @@
 {
   "model": "opus",
+  "outputStyle": "Direct",
   "permissions": {
     "deny": [
       "Read(./.env)",
@@ -115,6 +116,15 @@
             "command": "__ZELLAUDE_HOOK_PATH__",
             "timeout": 5,
             "async": true
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/repos/memory/.bin/session-start-hook.sh",
+            "timeout": 10
           }
         ]
       }
