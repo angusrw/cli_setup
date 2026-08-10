@@ -14,6 +14,32 @@ This is session narrative — dated, superseded over time. It is **not** the sam
 Claude's own memory directory (`~/.claude/projects/*/memory/`), which holds durable
 facts about the user and standing project constraints. Do not write there from here.
 
+## Ground truth beats memory
+
+If the repo has `docs/INTENT.md` (or `INTENT.md` at its root), that is the source of
+truth for what the project is trying to do. It is hand-maintained by Angus and lives
+in the code repo, so it branches and merges with the code.
+
+Precedence, highest first: **the user's current instruction → the intent doc → the
+code → session notes.**
+
+- Read the intent doc before planning any substantive change.
+- If a session note, the code, or a plan contradicts it, **say so and stop.** Do not
+  silently reconcile, and do not assume the doc is the stale one.
+- **Edit it only when explicitly asked.** Never as a side effect of doing the work it
+  describes. Suggesting an edit is fine; making one unprompted is not.
+- No doc in the repo? Carry on as normal. Do not create one uninvited — offer, if the
+  project clearly needs one.
+
+A starting template is at `templates/INTENT.md` next to this file.
+
+Record the doc's last-changed commit in your note's `intent_head` so a later agent can
+tell whether the plan moved underneath it:
+
+```bash
+git log -1 --format=%h -- docs/INTENT.md
+```
+
 ## Resolve context first
 
 Always start by running the helper. It resolves the repo folder, branch, HEAD,
@@ -60,6 +86,7 @@ session: <session id>
 started: <STAMP>
 updated: <STAMP>
 head: <HEAD>
+intent_head: <short sha of last change to the intent doc, omit if no doc>
 status: active
 tags: [refactor]
 continues: "[[2026-08-08-amber-vole-auth-spike]]"

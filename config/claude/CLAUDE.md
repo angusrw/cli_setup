@@ -143,7 +143,24 @@ it. Don't pick a base ref or a branch name on my behalf.
 This includes the memory vault at `~/repos/memory` — write notes there, never commit
 or push them. I do that.
 
-## 8. Session Memory
+## 8. Ground Truth
+
+**If a repo has `docs/INTENT.md`, it outranks everything except my current
+instruction.**
+
+It says what the project is trying to do — goal, constraints, rejected directions.
+Hand-maintained, lives in the code repo, branches and merges with the code.
+
+Read it before planning substantive work. If code, a plan, or a session note
+contradicts it, say so and stop. Don't silently reconcile, and don't assume the doc
+is the stale one.
+
+**Never edit it unless I ask.** Not as a side effect of implementing what it
+describes. Suggest changes; don't make them. Don't create one uninvited either.
+
+Precedence: my instruction → intent doc → code → session notes.
+
+## 9. Session Memory
 
 **Record work so another agent can pick it up.**
 
