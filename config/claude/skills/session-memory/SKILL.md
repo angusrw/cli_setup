@@ -16,9 +16,12 @@ facts about the user and standing project constraints. Do not write there from h
 
 ## Ground truth beats memory
 
-If the repo has `docs/INTENT.md` (or `INTENT.md` at its root), that is the source of
-truth for what the project is trying to do. It is hand-maintained by Angus and lives
-in the code repo, so it branches and merges with the code.
+`$DIR/_intent.md` is the source of truth for what a project is trying to do — goal,
+constraints, rejected directions. Hand-maintained by Angus. It lives in the vault
+alongside the notes, **never in the project repo.**
+
+A branch-specific `$DIR/_intent.<branch-with-slashes-as-dashes>.md` overrides the
+repo-wide one when it exists. Most repos will only ever have `_intent.md`.
 
 Precedence, highest first: **the user's current instruction → the intent doc → the
 code → session notes.**
@@ -28,17 +31,11 @@ code → session notes.**
   silently reconcile, and do not assume the doc is the stale one.
 - **Edit it only when explicitly asked.** Never as a side effect of doing the work it
   describes. Suggesting an edit is fine; making one unprompted is not.
-- No doc in the repo? Carry on as normal. Do not create one uninvited — offer, if the
-  project clearly needs one.
+- No doc for this repo? Carry on as normal. Do not create one uninvited.
+- **Never write an intent doc, or any other file, into the project repo.**
 
-A starting template is at `templates/INTENT.md` next to this file.
-
-Record the doc's last-changed commit in your note's `intent_head` so a later agent can
-tell whether the plan moved underneath it:
-
-```bash
-git log -1 --format=%h -- docs/INTENT.md
-```
+A starting template is at `templates/INTENT.md` next to this file. If Angus asks for
+one, copy it to `$DIR/_intent.md` and fill it in there.
 
 ## Resolve context first
 
@@ -46,8 +43,13 @@ Always start by running the helper. It resolves the repo folder, branch, HEAD,
 and this session's pseudonym in one go:
 
 ```bash
-~/repos/memory/.bin/memctx.sh --session "$CLAUDE_SESSION_ID"
+~/repos/memory/.bin/memctx.sh --init --session "$CLAUDE_SESSION_ID"
 ```
+
+`--init` creates the repo folder and seeds `_index.md` if they do not exist. It is
+idempotent, so pass it whenever you are about to write. Omit it when you are only
+reading. A repo with no folder is just one nobody has written about yet — that is
+normal, not an error.
 
 If `$CLAUDE_SESSION_ID` is not set, pass the session id from the transcript path,
 or omit `--session` and pick any unused adjective-animal name.
@@ -86,7 +88,6 @@ session: <session id>
 started: <STAMP>
 updated: <STAMP>
 head: <HEAD>
-intent_head: <short sha of last change to the intent doc, omit if no doc>
 status: active
 tags: [refactor]
 continues: "[[2026-08-08-amber-vole-auth-spike]]"
@@ -129,8 +130,7 @@ note; link to it with `continues` instead.
 ## The index
 
 After creating a note, and again if its one-line summary changes materially, add or
-update its line in `$INDEX` (create the file with an `# <repo>` heading if missing).
-Newest first:
+update its line in `$INDEX`. `--init` will have created it. Newest first:
 
 ```markdown
 - [[2026-08-10-sage-heron-auth-refactor]] — swapped token refresh to a background

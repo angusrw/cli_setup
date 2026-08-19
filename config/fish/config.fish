@@ -21,7 +21,7 @@ alias typora="open -a typora"
 set -gx STARSHIP_CONFIG "$HOME/.config/starship/mytheme.toml"
 starship init fish | source
 
-# Auto-start zellij (only in interactive sessions, avoid nesting)
+# Auto-start zellij
 if status is-interactive
     and not set -q ZELLIJ
     exec zellij

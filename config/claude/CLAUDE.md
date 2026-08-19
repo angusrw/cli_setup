@@ -145,11 +145,12 @@ or push them. I do that.
 
 ## 8. Ground Truth
 
-**If a repo has `docs/INTENT.md`, it outranks everything except my current
-instruction.**
+**If `~/repos/memory/<repo>/_intent.md` exists, it outranks everything except my
+current instruction.**
 
 It says what the project is trying to do — goal, constraints, rejected directions.
-Hand-maintained, lives in the code repo, branches and merges with the code.
+Hand-maintained by me, kept in the memory vault. **Never put it, or anything else
+like it, in the project repo.**
 
 Read it before planning substantive work. If code, a plan, or a session note
 contradicts it, say so and stop. Don't silently reconcile, and don't assume the doc
